@@ -55,7 +55,7 @@ const Dashboard = () => {
         Logout
       </Button>
       <Grid container spacing={6} style={{ marginTop: "16px" }}>
-        {data?.data.map((user: any) => (
+        {token && data?.data.map((user: any) => (
           <Grid
             item
             xs={12}
