@@ -55,29 +55,34 @@ const Dashboard = () => {
         Logout
       </Button>
       <Grid container spacing={6} style={{ marginTop: "16px" }}>
-        {token && data?.data.map((user: any) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            key={user.id}
-            border="1px solid black"
-          >
-            <ImageListItem>
-              <img
-                style={{ borderRadius: "50%", height: "100px", width: "100px" }}
-                src={user.avatar}
-                alt={user.first_name}
-                loading="lazy"
-              />
-            </ImageListItem>
-            <Typography>
-              {user.first_name} {user.last_name}
-            </Typography>
-            <Typography>{user.email}</Typography>
-          </Grid>
-        ))}
+        {token &&
+          data?.data.map((user: any) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={user.id}
+              border="1px solid black"
+            >
+              <ImageListItem>
+                <img
+                  style={{
+                    borderRadius: "50%",
+                    height: "100px",
+                    width: "100px",
+                  }}
+                  src={user.avatar}
+                  alt={user.first_name}
+                  loading="lazy"
+                />
+              </ImageListItem>
+              <Typography>
+                {user.first_name} {user.last_name}
+              </Typography>
+              <Typography>{user.email}</Typography>
+            </Grid>
+          ))}
       </Grid>
       <Grid
         container
