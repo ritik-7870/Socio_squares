@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Grid, TextField, Button, Typography, Alert } from "@mui/material";
 import { useState } from "react";
 import Layout from "../components/Layout";
+import { useRouter } from "next/navigation";
 
 interface RegisterFormData {
   email: string;
@@ -12,16 +13,21 @@ interface RegisterFormData {
 }
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>();
   const [registerUser, { isLoading }] = useRegisterMutation();
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
       const response = await registerUser(data).unwrap();
       dispatch(setToken(response.token));
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.data.error);
     }
@@ -29,7 +35,14 @@ const Register = () => {
 
   return (
     <Layout>
-      <Grid container spacing={2} justifyContent="center">
+      <Grid
+        container
+        spacing={2}
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+        gap="10px"
+      >
         <Grid item xs={12} md={6}>
           <Typography variant="h4" gutterBottom>
             Register
@@ -49,7 +62,10 @@ const Register = () => {
               type="password"
               fullWidth
               margin="normal"
-              {...register("password", { required: "Password is required", minLength: 8 })}
+              {...register("password", {
+                required: "Password is required",
+                minLength: 8,
+              })}
               error={!!errors.password}
               helperText={errors.password?.message}
             />
@@ -63,6 +79,12 @@ const Register = () => {
               Register
             </Button>
           </form>
+        </Grid>
+        <Grid>
+          <div onClick={() => router.push("/login")}>
+            Already have an Account?{" "}
+            <span style={{ color: "blueviolet" }}>Login</span>
+          </div>
         </Grid>
       </Grid>
     </Layout>

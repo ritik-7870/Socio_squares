@@ -10,20 +10,19 @@ Installation
 
 Clone the repository:
 
-git clone <repository_url>
-cd <repository_directory>
+git clone https://github.com/ritik-7870/Socio_squares.git
 
 Install dependencies:
 
-npm install
+1. npm install
 
 Required dependencies:
 
-npm install @mui/material @emotion/react @emotion/styled redux react-redux @reduxjs/toolkit react-hook-form next-redux-wrapper axios typescript @types/react @types/node
+2. npm install @mui/material @emotion/react @emotion/styled redux react-redux @reduxjs/toolkit react-hook-form next-redux-wrapper axios typescript @types/react @types/node
 
 Run the development server:
 
-npm run dev
+3. npm run dev
 
 Open your browser and navigate to http://localhost:3000.
 
